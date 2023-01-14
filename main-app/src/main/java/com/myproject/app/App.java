@@ -14,7 +14,7 @@ public class App extends Application{
     @Override
     public void start(Stage stage){
         try{
-            Parent root = FXMLLoader.load(getClass().getResource("Management_UI.fxml"));
+            Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("Management_UI.fxml"));
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
