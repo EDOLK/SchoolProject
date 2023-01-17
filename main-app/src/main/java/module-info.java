@@ -6,4 +6,6 @@ module com.myproject.app {
     requires javafx.controls;
     requires javafx.fxml;
     exports com.myproject.app;
+    exports com.myproject.app.Classes;
+    opens com.myproject.app.Controls to javafx.fxml;
 }

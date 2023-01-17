@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.myproject.app.Controls.IPSetterController">
+   <children>
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="216.0" layoutY="125.0" prefHeight="52.0" prefWidth="168.0" text="Database IP address:">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <TextField fx:id="ipInput" layoutX="190.0" layoutY="190.0" onMouseClicked="#resetErrorMessage" prefHeight="25.0" prefWidth="220.0" promptText="mongodb://localhost:27017" text="mongodb://localhost:27017" />
+      <Button layoutX="420.0" layoutY="190.0" mnemonicParsing="false" onAction="#sendIP" text="Set" />
+      <Label fx:id="errorText" alignment="CENTER" contentDisplay="CENTER" layoutX="189.0" layoutY="247.0" prefHeight="17.0" prefWidth="220.0" textAlignment="CENTER" textFill="RED" />
+   </children>
+</AnchorPane>

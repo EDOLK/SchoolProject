@@ -10,7 +10,10 @@ import org.bson.codecs.pojo.PojoCodecProvider;
 
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
+import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import com.myproject.app.Classes.Course;
+import com.myproject.app.Classes.Student;
 
 public class ManagementSystem{
     private final CodecProvider pojoCodecProvider = PojoCodecProvider.builder().automatic(true).build();
@@ -18,25 +21,31 @@ public class ManagementSystem{
     private String uri;
     private MongoClient mc;
     private MongoDatabase db;
+    private MongoCollection<Student> studentCollection;
+    private MongoCollection<Course> courseCollection;
 
-    public ManagementSystem(String uri){
-        try{
-            mc = MongoClients.create(uri);
-            db = mc.getDatabase("StudentManagementDB").withCodecRegistry(pojoCodecRegistry);
-            this.uri = uri;
-        }catch(Exception e){
-            System.out.println(e);
-        }
+    public ManagementSystem(String uri) throws IllegalArgumentException{
+        setUri(uri);
     }
 
-    public void setUri(String uri){
-        try{
-            mc = MongoClients.create(uri);
-            db = mc.getDatabase("StudentManagementDB").withCodecRegistry(pojoCodecRegistry);
-            this.uri = uri;
-        }catch(Exception e){
-            System.out.println(e);
-        }
+    public ManagementSystem(){
+
+    }
+
+    public void setUri(String uri) throws IllegalArgumentException{
+        mc = MongoClients.create(uri);
+        db = mc.getDatabase("StudentManagementDB").withCodecRegistry(pojoCodecRegistry);
+        this.uri = uri;
+        getCollections();
+    }
+
+    private void getCollections(){
+        studentCollection = db.getCollection("Students", Student.class);
+        courseCollection = db.getCollection("Courses", Course.class);
+    }
+
+    public void addStudent(Student newStudent) throws Exception{
+        studentCollection.insertOne(newStudent);
     }
 
 }
